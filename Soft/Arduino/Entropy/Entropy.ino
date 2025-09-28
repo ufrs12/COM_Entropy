@@ -28,5 +28,10 @@ void loop() {
   adc0 = ads.readADC_SingleEnded(0);  // Чтение значения с аналогового входа 0
   
   modbus.poll();
+
+  analogWrite(3, holdingRegisters[1]);      // отправляем на мосфет
+
   holdingRegisters[0] = adc0;
+
+  
 }
