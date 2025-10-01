@@ -31,8 +31,11 @@ void setup() {
 
 void loop() {
   int16_t adc0;
+  int16_t adc3;
   adc0 = ads.readADC_SingleEnded(0);  // Чтение значения с аналогового входа 0
+  adc3 = ads.readADC_SingleEnded(3);  // Чтение значения с аналогового входа 3
   holdingRegisters[0] = adc0;
+  holdingRegisters[3] = adc3;
 
   uint8_t addr[8];
   if (sensor.getAddress(0, addr)) {
@@ -43,4 +46,6 @@ void loop() {
   modbus.poll();
 
   analogWrite(3, holdingRegisters[1]);      // отправляем на мосфет
+  
+  delay(100);
 }
